@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Picture gallery </title>
+        <script>
+            var c=0;
+            function picture(){
+                c++;
+                if (c==1) document.images[0].src="4/img1.jpg";
+                if (c==2) document.images[0].src="4/img2.jpg";
+                if (c==3) document.images[0].src="4/img3.jpg";
+                if (c==4) document.images[0].src="4/img4.jpg";
+                if (c==5){ 
+                    document.images[0].src="4/img5.jpg";
+                    c=0;
+                }
+            }
+            function time(){
+                picture();
+                setTimeout('time()',2000);
+            }
+        </script>
+        <style>
+            img{
+                width: 40%;
+                height: 40%;
+            }
+            p{
+                font-size: 20px;
+            }
+        </style>
+    </head>
+    <body onload="setTimeout('time()',2000)">
+        <h1> Picture Gallery </h1><br>
+        <p> Some picture of Finland </p><br>
+        <img id="images" src="4/img1.jpg" />
+    </body>
+</html>

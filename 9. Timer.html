@@ -1,0 +1,68 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <title> Timer </title>
+        <script type="text/javascript">
+            var m=0; var s=0; var sta=0; var i;
+            function cStart(){
+                if(sta==0 && document.getElementById('minute') && document.getElementById('second')){
+                    m=parseInt(document.getElementById("minute").value) + 0;
+                    s=parseInt(document.getElementById("second").value) * 1;
+
+                    if(isNaN(m)) m=0;
+                    if(isNaN(s)) s=0;
+
+                    document.getElementById('minute').value=m;
+                    document.getElementById('second').value=s;
+                    sta=1;
+                    document.getElementById('start').setAttribute('disable', 'disable');    
+                }
+                if(m==0 && s==0){
+                    sta=0;
+                    document.getElementById('start').removeAttribute('disable');
+                    return false;
+                }else{
+                    s--;
+                    if(s<0){
+                        if(m>0){
+                            s=59;
+                            m--;
+                        }else{     
+                            s=0;
+                            m=0;
+                        }
+                    }
+                }
+                document.getElementById('mi').innerHTML = m;
+                document.getElementById('se').innerHTML = s;
+                i=setTimeout('cStart()',1000);
+            }
+            function cStop(){
+                clearTimeout(i);
+                s=0;
+                m=0;
+                document.getElementById('mi').innerHTML = m;
+                document.getElementById('se').innerHTML = s;
+            }
+        </script>
+        <style>
+            .timer{
+                padding-top: 50px;
+                text-align: center;
+                font-size: 30px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 style="text-align: center;"> Countdown Timer</h1>
+        <div class="timer">
+            Minute(s):<input type="text" id="minute" name="minute" value="0" />&nbsp;&nbsp;
+            Second(s):<input type="text" id="second" name="second" value="0" />
+            <br><br> 
+            <input type="button" id="start" value="START" onclick="cStart();"> &nbsp;&nbsp;
+            <input type="button" id="stop" value="STOP" onclick="cStop();">
+            <br><br>
+            Countdown: <span id="mi">00</span>:<span id="se">00</span>
+        </div>
+    </body>
+</html>

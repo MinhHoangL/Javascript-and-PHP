@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> BMI Calculation </title>
+        <style> 
+            h1{
+                text-align: center
+            }
+            form{
+                font-size: 30px;
+                margin-left: 40px;
+            }
+        </style>
+        <script type="text/javascript">
+            function calBMI(){
+                // User input
+                let BMI = null;
+                let height=Number(document.getElementById("height").value);
+                let weight=Number(document.getElementById("weight").value);
+                let result = document.getElementById("bmi-result");
+                // Calculation
+                BMI= weight/Math.pow(height*0.01, 2);
+                // Display the BMI result
+                BMI= Math.round(BMI*100)/100;
+                // Display the comment
+                if(BMI<18.5)
+                    result.innerHTML=BMI + " - Underweight";
+                else if(18.5<=BMI && BMI<=25)
+                    result.innerHTML=BMI + "- Healthy weight";
+                else if(25<BMI && BMI<=30)
+                    result.innerHTML=BMI + " - Overweight";
+                else if(BMI>30)
+                    result.innerHTML=BMI + " - Obese";
+                return false;
+            }
+        </script>
+    </head>
+    <body>
+        <h1> BMI Calculation </h1>
+        <form onsubmit="return calBMI()">
+        <br>
+        Weight (kg):
+        <br><input style="font-size: 20px;" type="number" id="weight" min="1" max="600">
+        <br><br>
+        Height (cm):
+        <br><input style="font-size: 20px;" type="number" id="height" min="1" max="1000">
+        <br><br>
+        <input style="font-size: 20px;" type="submit" value="Calculate">
+        <br><br>
+        <div id="bmi-result"></div>
+        </form>
+    </body>
+</html>
